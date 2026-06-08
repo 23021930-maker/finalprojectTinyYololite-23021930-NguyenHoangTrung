@@ -40,7 +40,7 @@ void conv1(
         for(c = 0; c < 64; c++) {
 
             for(ic = 0; ic < 3; ic++) {
-#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL
                 win_buf[0][0][ic] = win_buf[0][1][ic];
                 win_buf[0][1][ic] = win_buf[0][2][ic];
                 win_buf[1][0][ic] = win_buf[1][1][ic];
@@ -66,6 +66,7 @@ void conv1(
 
             if(r >= 2 && c >= 2) {
                 for(oc = 0; oc < C1; oc++) {
+#pragma HLS PIPELINE II=1
                 	sum = bias[oc];
 
                     for(kr = 0; kr < 3; kr++) {
@@ -137,7 +138,7 @@ void conv2(
     for(r = 0; r < 31; r++) {
         for(c = 0; c < 31; c++) {
             for(ic = 0; ic < C1; ic++) {
-#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL
                 win_buf[0][0][ic] = win_buf[0][1][ic];
                 win_buf[0][1][ic] = win_buf[0][2][ic];
                 win_buf[1][0][ic] = win_buf[1][1][ic];
@@ -160,6 +161,7 @@ void conv2(
             if(r >= 2 && c >= 2) {
 
                 for(oc = 0; oc < C2; oc++) {
+#pragma HLS PIPELINE II=1
                     sum = bias[oc];
                     for(kr = 0; kr < 3; kr++) {
 //#pragma HLS UNROLL
@@ -230,7 +232,7 @@ void conv3(
     for(r = 0; r < 14; r++) {
         for(c = 0; c < 14; c++) {
             for(ic = 0; ic < C2; ic++) {
-#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL
                 win_buf[0][0][ic] = win_buf[0][1][ic];
                 win_buf[0][1][ic] = win_buf[0][2][ic];
                 win_buf[1][0][ic] = win_buf[1][1][ic];
@@ -252,6 +254,7 @@ void conv3(
 
             if(r >= 2 && c >= 2) {
                 for(oc = 0; oc < C3; oc++) {
+#pragma HLS PIPELINE II=1
                     sum = bias[oc];
                     for(kr = 0; kr < 3; kr++) {
 //#pragma HLS UNROLL
@@ -291,7 +294,7 @@ void conv4(
     for(r = 0; r < 12; r++) {
         for(c = 0; c < 12; c++) {
             for(ic = 0; ic < C3; ic++) {
-#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL
                 win_buf[0][0][ic] = win_buf[0][1][ic];
                 win_buf[0][1][ic] = win_buf[0][2][ic];
                 win_buf[1][0][ic] = win_buf[1][1][ic];
@@ -313,6 +316,7 @@ void conv4(
 
             if(r >= 2 && c >= 2) {
                 for(oc = 0; oc < C3; oc++) {
+#pragma HLS PIPELINE II=1
                     sum = bias[oc];
                     for(kr = 0; kr < 3; kr++) {
 //#pragma HLS UNROLL
@@ -352,7 +356,7 @@ void conv5(
     for(r = 0; r < 10; r++) {
         for(c = 0; c < 10; c++) {
             for(ic = 0; ic < C3; ic++) {
-#pragma HLS PIPELINE II=1
+#pragma HLS UNROLL
                 win_buf[0][0][ic] = win_buf[0][1][ic];
                 win_buf[0][1][ic] = win_buf[0][2][ic];
                 win_buf[1][0][ic] = win_buf[1][1][ic];
@@ -374,6 +378,7 @@ void conv5(
 
             if(r >= 2 && c >= 2) {
                 for(oc = 0; oc < C3; oc++) {
+#pragma HLS PIPELINE II=1
                     sum = bias[oc];
                     for(kr = 0; kr < 3; kr++) {
 //#pragma HLS UNROLL
@@ -476,5 +481,6 @@ void topp(
     conv5(f4, f5, W5, B5);
     detection_head(f5, output, WH, BH);
 }
+
 
 
