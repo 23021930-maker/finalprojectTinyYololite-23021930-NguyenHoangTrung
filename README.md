@@ -4,5 +4,5 @@ Thuật toán mô hình TinyYolo cơ bản: tinyyololite.c
 Thuật toán mô hình TinyYolo cải tiến: line&windowbufferimplen.c
 File nguồn: topp.h
 File testbench: tb_TinyYololite.c
-Folder VHDL: chứa code mô hình TinyYolo cải tiến
+Folder VHDL: chứa code VHDL mô hình TinyYolo cải tiến
 
